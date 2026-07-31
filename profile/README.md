@@ -28,6 +28,7 @@ work on a literally-empty `FROM scratch` image.
 | [**pkgx**](https://github.com/go-pkgx/pkgx) | **runtime** — run packages on the fly (`pkgx node@22`), bring several into an environment (`pkgx +git +bash -- …`) |
 | [**pkgm**](https://github.com/go-pkgx/pkgm) | **installer** — drop-in reference-pkgm CLI (`install`/`uninstall`/`shim`/`list`/…), plus a `run` for scratch images |
 | [**bottle**](https://github.com/go-pkgx/bottle) | **shared backend** — the pkgx bottle protocol: resolution, download, soname-exact `FROM scratch` closure completion, loader-aware exec |
+| [**mirror**](https://github.com/go-pkgx/mirror) | **mirror** — sync a local mirror of pkgx bottles; serve it and point tools at it with `PKGX_DIST` |
 
 Both tools import `go-pkgx/bottle`, so there is one source of truth and no
 duplication. `net/http` with an embedded CA bundle replaces curl+openssl;
