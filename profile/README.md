@@ -1,0 +1,35 @@
+<p align="center">
+  <img src="https://go-pkgx.github.io/img/logo.svg" alt="go-pkgx" width="96" height="96">
+</p>
+
+<h1 align="center">go-pkgx</h1>
+
+<p align="center">
+  <em>The pkgx world in pure Go — run and install packages on <code>FROM scratch</code>,
+  with one static binary each and a shared backend.</em>
+</p>
+
+<p align="center">
+  <a href="https://go-pkgx.github.io/">Home</a> ·
+  <a href="https://go-pkgx.github.io/docs/">Docs</a> ·
+  <a href="https://github.com/go-pkgx/pkgx">pkgx</a> ·
+  <a href="https://github.com/go-pkgx/pkgm">pkgm</a> ·
+  <a href="https://github.com/go-pkgx/bottle">bottle</a>
+</p>
+
+---
+
+Everything is `CGO_ENABLED=0` Go with no runtime dependencies of its own — single
+static binaries that materialise a package's full dependency closure on demand and
+work on a literally-empty `FROM scratch` image.
+
+| repo | role |
+| --- | --- |
+| [**pkgx**](https://github.com/go-pkgx/pkgx) | **runtime** — run packages on the fly (`pkgx node@22`), bring several into an environment (`pkgx +git +bash -- …`) |
+| [**pkgm**](https://github.com/go-pkgx/pkgm) | **installer** — drop-in reference-pkgm CLI (`install`/`uninstall`/`shim`/`list`/…), plus a `run` for scratch images |
+| [**bottle**](https://github.com/go-pkgx/bottle) | **shared backend** — the pkgx bottle protocol: resolution, download, soname-exact `FROM scratch` closure completion, loader-aware exec |
+
+Both tools import `go-pkgx/bottle`, so there is one source of truth and no
+duplication. `net/http` with an embedded CA bundle replaces curl+openssl;
+`compress/gzip` + a pure-Go xz decoder replace info-zip+xz. Everything is
+BSD-3-Clause and cross-compiles to six 64-bit targets.
