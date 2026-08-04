@@ -31,6 +31,24 @@ work on a literally-empty `FROM scratch` image.
 | [**mirror**](https://github.com/go-pkgx/mirror) | **mirror** — sync a local mirror of pkgx bottles; serve it and point tools at it with `PKGX_DIST` |
 | [**packages**](https://github.com/go-pkgx/packages) | **registry** — a pure-Go factory that builds pantry recipes with [`bk`](https://github.com/go-pkgx/bk) and publishes **signed, attested** bottles (SBOM + SLSA provenance + signature) to `ghcr.io/go-pkgx/packages`, daily |
 
+## Install
+
+Install `pkgm` (the pure-Go installer) in one line — it grabs the static binary
+for your os/arch from the latest release and verifies it against `SHA256SUMS`:
+
+```sh
+# Linux / macOS
+curl -fsSL https://go-pkgx.github.io/install.sh | sh
+```
+
+```powershell
+# Windows (PowerShell)
+irm https://go-pkgx.github.io/install.ps1 | iex
+```
+
+Go users can `go install github.com/go-pkgx/pkgm@latest`. Then `pkgm install
+lz4.org` verifies each bottle against the signed registry by default.
+
 Both tools import `go-pkgx/bottle`, so there is one source of truth and no
 duplication. `net/http` with an embedded CA bundle replaces curl+openssl;
 `compress/gzip` + a pure-Go xz decoder replace info-zip+xz. The `packages` factory
