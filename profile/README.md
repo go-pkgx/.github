@@ -6,7 +6,7 @@
 
 <p align="center">
   <em>The pkgx world in pure Go — run and install packages on <code>FROM scratch</code>,
-  with one static binary each and a shared backend.</em>
+  with one static binary each, a shared backend, and a signed, attested package registry.</em>
 </p>
 
 <p align="center">
@@ -29,8 +29,10 @@ work on a literally-empty `FROM scratch` image.
 | [**pkgm**](https://github.com/go-pkgx/pkgm) | **installer** — drop-in reference-pkgm CLI (`install`/`uninstall`/`shim`/`list`/…), plus a `run` for scratch images |
 | [**bottle**](https://github.com/go-pkgx/bottle) | **shared backend** — the pkgx bottle protocol: resolution, download, soname-exact `FROM scratch` closure completion, loader-aware exec |
 | [**mirror**](https://github.com/go-pkgx/mirror) | **mirror** — sync a local mirror of pkgx bottles; serve it and point tools at it with `PKGX_DIST` |
+| [**packages**](https://github.com/go-pkgx/packages) | **registry** — a pure-Go factory that builds pantry recipes with [`bk`](https://github.com/go-pkgx/bk) and publishes **signed, attested** bottles (SBOM + SLSA provenance + signature) to `ghcr.io/go-pkgx/packages`, daily |
 
 Both tools import `go-pkgx/bottle`, so there is one source of truth and no
 duplication. `net/http` with an embedded CA bundle replaces curl+openssl;
-`compress/gzip` + a pure-Go xz decoder replace info-zip+xz. Everything is
-BSD-3-Clause and cross-compiles to six 64-bit targets.
+`compress/gzip` + a pure-Go xz decoder replace info-zip+xz. The `packages` factory
+signs every bottle against a pinned key, and `PKGX_VERIFY=1` refuses anything that
+does not verify. Everything is BSD-3-Clause and cross-compiles to six 64-bit targets.
