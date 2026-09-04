@@ -39,18 +39,18 @@ for your os/arch from the named release and verifies it against `SHA256SUMS`:
 
 ```sh
 # Linux / macOS
-curl -fsSL https://go-pkgx.github.io/install.sh | sh -s -- pkgm v0.1.1
+curl -fsSL https://go-pkgx.github.io/install.sh | sh -s -- pkgm v0.1.2
 ```
 
 ```powershell
 # Windows (PowerShell)
-$env:PKGM_VERSION='v0.1.1'; irm https://go-pkgx.github.io/install.ps1 | iex
+$env:PKGM_VERSION='v0.1.2'; irm https://go-pkgx.github.io/install.ps1 | iex
 ```
 
 The version is named on purpose: this line copied today and the same line
 copied in six months install the same bytes. `sh -s -- pkgm latest` (or
-`PKGM_VERSION=latest`) asks for the newest instead, and `sh -s -- pkgx v0.1.2`
-/ `sh -s -- mirror v0.1.2` install the other two tools.
+`PKGM_VERSION=latest`) asks for the newest instead, and `sh -s -- pkgx v0.1.3`
+/ `sh -s -- mirror v0.1.3` install the other two tools.
 
 Go users can `go install github.com/go-pkgx/pkgm@latest`. Then `pkgm install
 lz4.org` verifies each bottle against the signed registry by default.
