@@ -39,17 +39,17 @@ for your os/arch from the named release and verifies it against `SHA256SUMS`:
 
 ```sh
 # Linux / macOS
-curl -fsSL https://go-pkgx.github.io/install.sh | sh -s -- pkgm v0.1.3
+curl -fsSL https://go-pkgx.github.io/install.sh | sh -s -- pkgm v0.1.4
 ```
 
 ```powershell
 # Windows (PowerShell)
-$env:PKGM_VERSION='v0.1.3'; irm https://go-pkgx.github.io/install.ps1 | iex
+$env:PKGM_VERSION='v0.1.4'; irm https://go-pkgx.github.io/install.ps1 | iex
 ```
 
 The version is named on purpose: this line copied today and the same line
 copied in six months install the same bytes. `sh -s -- pkgm latest` (or
-`PKGM_VERSION=latest`) asks for the newest instead, and `sh -s -- pkgx v0.1.4`
+`PKGM_VERSION=latest`) asks for the newest instead, and `sh -s -- pkgx v0.1.5`
 / `sh -s -- mirror v0.1.4` install the other two tools.
 
 Go users can `go install github.com/go-pkgx/pkgm@latest`. Then `pkgm install
