@@ -31,6 +31,8 @@ work on a literally-empty `FROM scratch` image.
 | [**mirror**](https://github.com/go-pkgx/mirror) | **mirror** — sync a local mirror of pkgx bottles; serve it and point tools at it with `PKGX_DIST` |
 | [**bk**](https://github.com/go-pkgx/bk) | **build tool** — a pure-Go brewkit: builds a pantry recipe and packages a bottle, with the build *target* a first-class value, so Windows PE bottles cross-build from a linux host |
 | [**packages**](https://github.com/go-pkgx/packages) | **registry** — a pure-Go factory that builds pantry recipes with `bk` and publishes **signed, attested** bottles (SBOM + SLSA provenance + signature) to `ghcr.io/go-pkgx/packages` |
+| [**pantry-overlay**](https://github.com/go-pkgx/pantry-overlay) | **corrections** — recipes that override the matching upstream one through `PKGX_PANTRY_OVERLAY`, everything else falling back. An upstream recipe can be unsatisfiable against the current registry: curl, wget and git pin `openssl.org: ^1.1` while openssl is 3.x and 4.x, so without this `pkgm install` cannot resolve the closure the published bottles were built against |
+| [**registry-viewer**](https://github.com/go-pkgx/registry-viewer) | **the tree at <https://go-pkgx.github.io/packages/>** — a `CGO_ENABLED=0` WASM app drawing the registry as a filterable `TreeTable` to a `<canvas>`, with go-widgets/toolkit and go-widgets/painter, from the `registry.json` the factory emits |
 
 ## Install
 
